@@ -7,6 +7,7 @@ class Mid:
                     '/user/register_vaild/',
                     '/user/login/',
                     '/user/login_handle/',
-                    '/user/logout/'
+                    '/user/logout/',
+                    '/user/islogin/',
         ]:
             request.session['url_path'] = request.get_full_path()

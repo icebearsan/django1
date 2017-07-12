@@ -16,7 +16,7 @@
 			<div class="fr">
                 {% if request.session.uname %}
 				<div class="login_btn fl">
-					欢迎您：<em>{{ user.uname }}</em>
+					欢迎您：<em>{{ request.session.uname }}</em>
                     <span>|</span>
 					<a href="/user/login_out/">退出</a>
 				</div>
@@ -31,7 +31,7 @@
 					<span>|</span>
 					<a href="/user/">用户中心</a>
 					<span>|</span>
-					<a href="cart.html">我的购物车</a>
+					<a href="everyday/cart.html">我的购物车</a>
 					<span>|</span>
 					<a href="everyday/order.html">我的订单</a>
 				</div>
@@ -56,9 +56,16 @@
 		</div>
 		<div class="guest_cart fr">
 			<a href="#" class="cart_name fl">我的购物车</a>
-			<div class="goods_count fl">1</div>
+			<div class="goods_count fl" id="show_count">1</div>
 		</div>
 	</div>
+        <script>
+            if($('.login_btn').text().indexOf('登录') < 0){
+                $.get('/cart/count/',function (data) {
+                    $('#show_count').text(data.count);
+                });
+            }
+        </script>
     {% endif %}
     {% endif %}
 {% block body %}{% endblock body %}

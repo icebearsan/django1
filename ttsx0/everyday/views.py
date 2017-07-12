@@ -65,6 +65,11 @@ def login_handle(request):
         else:
             return render(request,'everyday/login.html',{'context_p':'密码错误','title': '登录','uname':uname,'upwd':upwd,'top':'0'})
 
+def islogin(request):
+    result = 0
+    if request.session.has_key('uid'):
+        result = 1
+    return JsonResponse({'islogin':result})
 
 def log_out(request):
     request.session.flush()

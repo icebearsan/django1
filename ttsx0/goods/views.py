@@ -8,8 +8,8 @@ def index(request):
     for type1 in type_list:
         new_list = type1.goodsinfo_set.order_by('-id')[0:4]
         click_list = type1.goodsinfo_set.order_by('-gclick')[0:4]
-        list1.append({'new_list':new_list,'click_list':click_list})
-        return render(request,'everyday/index.html',{'title':'首页','list1':list1,'cart':'1'})
+        list1.append({'new_list':new_list,'click_list':click_list,'t1':type1})
+    return render(request,'everyday/index.html',{'title':'首页','list1':list1,'cart':'1'})
 
 def goods_list(request,tid,pindex,orderby):
     t1 = TypeInfo.objects.get(pk=int(tid))
